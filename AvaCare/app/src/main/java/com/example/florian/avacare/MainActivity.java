@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,10 +29,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        TextView tv = (TextView) findViewById(R.id.avausername);
-        tv.setText(Username);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
        // TextView headerTV = (TextView) findViewById(R.id.nav_header_title);
-
+        
         if(ko_type == 1){
             //TODO goto accident input
         }else if(ko_type == 2){
@@ -68,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         }else if(ko_type == 0){
 
         }
-
     }
 
     @Override
