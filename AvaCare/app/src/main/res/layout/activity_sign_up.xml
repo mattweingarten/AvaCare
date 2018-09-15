@@ -13,7 +13,7 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="28dp" />
 
     <EditText
@@ -23,7 +23,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="105dp" />
 
     <EditText
@@ -33,7 +33,7 @@
         android:ems="10"
         android:hint="repeat Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="172dp" />
 
 
@@ -43,8 +43,8 @@
         android:layout_height="60dp"
         android:checkedButton="@+id/Patient"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="225dp">
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="244dp">
 
         <RadioButton
             android:id="@+id/Patient"
@@ -57,6 +57,7 @@
             android:id="@+id/Doctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:onClick="onRadioButtonClicked"
             android:text="Doctor" />
     </RadioGroup>
@@ -65,9 +66,9 @@
         android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="sign_up_attempt"
         android:text="Sign Up"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="334dp"
-        android:onClick="sign_up_attempt"/>/>
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="334dp" />/>
 
 </android.support.constraint.ConstraintLayout>
