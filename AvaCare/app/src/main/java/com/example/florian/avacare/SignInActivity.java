@@ -7,20 +7,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignInActivity extends AppCompatActivity {
 
-    static String url = "https://72916a52.ngrok.io/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +79,11 @@ public class SignInActivity extends AppCompatActivity {
             obj.put("username", username);
             obj.put("password",password);
 
-            JSONObject response = post_request(obj);
+            //TODO
+            Object response = new NetworkAsyncTask().execute();
             String id = "user_id";
-            int userid = response.getInt(id);
+            //int userid = response.getInt(id);
+            int userid = 1;
             if (userid != 0) {
                 return true;
             }
@@ -85,30 +91,10 @@ public class SignInActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
         }
         return false;
     }
 
-    static JSONObject post_request(JSONObject obj) throws IOException, JSONException {
-
-        PostMethod post = new PostMethod(url);
-        NameValuePair[] data = {
-                new NameValuePair("username", obj.getString("username")),
-                new NameValuePair("password", obj.getString("password"))
-        };
-        post.setRequestBody(data);
-// execute method and handle any error responses.
-
-        InputStream in = post.getResponseBodyAsStream();
-        JSONObject answer = new JSONObject();
-        answer.putOpt("id", in);
-
-// handle response
-        return answer;
-    }
-
 }
+
 
