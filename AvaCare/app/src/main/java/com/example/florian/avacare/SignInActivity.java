@@ -7,22 +7,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 
 
 
 public class SignInActivity extends AppCompatActivity {
 
-    static String url = "http://url.com";
+    static String url = "https://72916a52.ngrok.io/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +74,7 @@ public class SignInActivity extends AppCompatActivity {
             obj.put("username", username);
             obj.put("password",password);
 
-            JSONObject response = curl(obj);
+            JSONObject response = post_request(obj);
             String id = "user_id";
             int userid = response.getInt(id);
             if (userid != 0) {
@@ -93,33 +91,22 @@ public class SignInActivity extends AppCompatActivity {
         return false;
     }
 
-    static JSONObject curl(JSONObject obj) throws IOException, JSONException {
+    static JSONObject post_request(JSONObject obj) throws IOException, JSONException {
 
-        URL object=new URL(url);
+        PostMethod post = new PostMethod(url);
+        NameValuePair[] data = {
+                new NameValuePair("username", obj.getString("username")),
+                new NameValuePair("password", obj.getString("password"))
+        };
+        post.setRequestBody(data);
+// execute method and handle any error responses.
 
-        HttpURLConnection con = (HttpURLConnection) object.openConnection();
-        con.setDoOutput(true);
-        con.setDoInput(true);
-        con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestProperty("Accept", "application/json");
-        con.setRequestMethod("POST");
+        InputStream in = post.getResponseBodyAsStream();
+        JSONObject answer = new JSONObject();
+        answer.putOpt("id", in);
 
-        OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-        wr.write(obj.toString());
-        wr.flush();
-        wr.close();
-
-
-        // read the response
-        InputStream in = new BufferedInputStream(con.getInputStream());
-        String result = org.apache.commons.io.IOUtils.toString(in, "UTF-8");
-        JSONObject jsonObject = new JSONObject(result);
-
-
-        in.close();
-        con.disconnect();
-
-        return jsonObject;
+// handle response
+        return answer;
     }
 
 }
