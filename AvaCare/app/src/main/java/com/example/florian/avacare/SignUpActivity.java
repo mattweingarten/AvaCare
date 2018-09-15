@@ -63,12 +63,23 @@ public class SignUpActivity extends AppCompatActivity {
         String password = etpassword.getText().toString();
         String password2 = etpassword2.getText().toString();
         int type = rtype.getCheckedRadioButtonId();
+        boolean doc = false;
+
+        if(type == 1){
+            doc = false;
+        }else if(type == 0){
+            doc = true;
+        }
 
         if(password.equals(password2)){
-
+            Intent i;
             //TODO DB insertion
             Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(SignUpActivity.this, MainActivity.class);
+            if(doc) {
+                i = new Intent(SignUpActivity.this, DocMainActivity.class);
+            } else {
+                i = new Intent(SignUpActivity.this, MainActivity.class);
+            }
             //TODO get userid from DB
             i.putExtra("username", username);
             startActivity(i);

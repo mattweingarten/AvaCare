@@ -37,6 +37,7 @@ public class SignInActivity extends AppCompatActivity {
             boolean bool = send(username, password);
             if (bool){
                 Intent i = new Intent(SignInActivity.this,MainActivity.class);
+                i.putExtra("username",username);
                 startActivity(i);
             }
             else{
