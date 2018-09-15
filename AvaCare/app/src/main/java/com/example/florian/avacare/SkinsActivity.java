@@ -1,8 +1,7 @@
 package com.example.florian.avacare;
 
-import android.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class SkinsActivity extends AppCompatActivity {
 
@@ -11,7 +10,14 @@ public class SkinsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skins);
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        setupActionBar();
+    }
+    //TODO change picture to png to not have raster
+    private void setupActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

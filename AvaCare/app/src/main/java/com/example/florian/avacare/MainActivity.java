@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity
     String Username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TODO change color of main drawer
+        //TODO change background color of all @+colors:colorBackgroundMain
+
         Intent i = getIntent();
         Username = i.getStringExtra("username");
         int ko_type = i.getIntExtra("ko_type",0);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here
-        Intent i;
+        Intent i = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_accidnet) {
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logOut) {
             i = new Intent(MainActivity.this, SignInActivity.class);
         }
-
+        startActivity(i);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
