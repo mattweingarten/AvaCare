@@ -29,7 +29,12 @@
             android:name=".DocMainActivity"
             android:label="@string/title_activity_doc_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DocInfoActivity"></activity>
+        <activity android:name=".DocInfoActivity" />
+        <activity android:name=".SkinsActivity" />
+        <activity
+            android:name=".HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
