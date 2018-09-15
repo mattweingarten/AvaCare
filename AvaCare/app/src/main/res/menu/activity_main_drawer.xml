@@ -11,6 +11,7 @@
         android:checkable="false"
         android:title="New Health issue"
         app:itemTextAppearance="?android:attr/textAppearanceLarge">
+        <!-- TODO change size of New Health issue to larger font -->
         <menu>
             <item
                 android:id="@+id/nav_accidnet"
