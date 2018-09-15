@@ -8,6 +8,7 @@ import android.widget.EditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import org.apache.commons.io.IOUtils;
 
 import static java.net.Proxy.Type.HTTP;
 
@@ -40,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();
         try {
-            create_json(username, password);
+            send(username, password);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -50,7 +52,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    static private void create_json (String username, String password)throws JSONException {
+    static private void send (String username, String password)throws JSONException {
         JSONObject obj = new JSONObject();
         try {
             obj.put("username", username);
@@ -66,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    static void curl(JSONObject obj) throws IOException {
+    static JSONObject curl(JSONObject obj) throws IOException, JSONException {
 
         URL object=new URL(url);
 
@@ -80,7 +82,19 @@ public class SignInActivity extends AppCompatActivity {
         OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
         wr.write(obj.toString());
         wr.flush();
+        wr.close();
 
+
+        // read the response
+        InputStream in = new BufferedInputStream(con.getInputStream());
+        String result = org.apache.commons.io.IOUtils.toString(in, "UTF-8");
+        JSONObject jsonObject = new JSONObject(result);
+
+
+        in.close();
+        con.disconnect();
+
+        return jsonObject;
     }
 }
 
