@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         //TODO change color of main drawer
         //TODO change background color of all @+colors:colorBackgroundMain
+        setTitle("AvaCare - new health issue");
 
         Intent i = getIntent();
         Username = i.getStringExtra("username");
@@ -40,7 +42,12 @@ public class MainActivity extends AppCompatActivity
                 //TODO send medical data to backend, receive treatment
 
                 //TODO send via json to backend
+                //--> send fever (true, false) and accident (true, false)
 
+
+                //TODO get location
+
+                //TODO get fever, get comment
                 //receive answer
                 String advice = "do this";
                 Intent i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity
         }else if(ko_type == 0){
 
         }
+
+        drawer.openDrawer(Gravity.LEFT);
     }
 
     @Override
@@ -110,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             i = new Intent(MainActivity.this, SettingsActivity.class);
         } else if (id == R.id.nav_logOut) {
             i = new Intent(MainActivity.this, SignInActivity.class);
+            //TODO prevent user from pressing back
         }
         startActivity(i);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
