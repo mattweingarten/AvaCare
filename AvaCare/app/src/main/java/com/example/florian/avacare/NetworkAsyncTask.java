@@ -1,65 +1,114 @@
 package com.example.florian.avacare;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URLConnection;
 
-class NetworkAsyncTask extends AsyncTask<Void, Void, Void> {
+import javax.net.ssl.HttpsURLConnection;
 
-    final static String URL = "https://97e89c8b.ngrok.io/users";
+
+class NetworkAsyncTask extends AsyncTask<URL, Void, String> {
+
+    Messagecallbackhandler parentClass;
+
+    String data;
+    String response;
+    String url;
+
+    public NetworkAsyncTask(String rest, Messagecallbackhandler msg, String url) {
+        this.data = rest;
+        this.parentClass = msg;
+        this.url = url;
+    }
+
+    protected String integrateData(String rest) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("?param=1");
+        sb.append(rest);
+        return sb.toString();
+    }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected String doInBackground(URL... urls) {
+        String response = "";
+        /*int limit = 0;
+
+        while (response.equals("") && limit < 20) {
+            response += sendAndReceive();
+            limit++;
+        }
+       */
+        URL url;
+        HttpsURLConnection connection;
+        StringBuilder result = new StringBuilder();
         try {
-            URL url = new URL(URL);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setDoInput(true);
-            con.setDoOutput(true);
+            url = new URL(this.url);
+            connection = (HttpsURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.setRequestMethod("POST");
 
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(integrateData(this.data));
+            writer.flush();
 
-            Map<String, String> parameters = new HashMap<>();
-            parameters.put("username", "hi");
-            parameters.put("password", "matt");
+            String line;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            DataOutputStream out = new DataOutputStream(con.getOutputStream());
-
-            out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
-            out.flush();
-            out.close();
-
-
-
-           // int status = con.getResponseCode();
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
+            while ((line = reader.readLine()) != null) {
+                result.append(line);
             }
-            in.close();
-            con.disconnect();
 
-            return null;
+            reader.close();
+            writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        this.response = result.toString();
+        return this.response;
+    }
+//
+//    public String sendAndReceive(){
+//        byte [] mess = jason.toString().getBytes();
+//
+//        byte [] response = new byte [1024];
+//        String text = "";
+//        DatagramSocket socket;
+//        try{
+//            InetAddress adr = InetAddress.getByName(new URL(this.url).getHost());
+//            socket = new DatagramSocket(80);
+//            DatagramPacket p = new DatagramPacket(mess,mess.length,adr,80);
+//            socket.setSoTimeout(2000);
+//            socket.send(p);
+//            DatagramPacket p2 = new DatagramPacket(response,response.length);
+//            socket.receive(p2);
+//
+//            String temp = new String(p2.getData());
+//            text += temp.substring(0,p2.getLength());
+//            socket.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return text;
+//    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        parentClass.handleMessageResponse(this.response);
     }
 }
+
+
