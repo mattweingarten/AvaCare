@@ -1,27 +1,21 @@
 package com.example.florian.avacare;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
-import org.apache.commons.io.IOUtils;
-
-import static java.net.Proxy.Type.HTTP;
 
 
 
@@ -42,30 +36,60 @@ public class SignInActivity extends AppCompatActivity {
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();
         try {
-            send(username, password);
+            boolean bool = send(username, password);
+            if (bool){
+                Intent i = new Intent(SignInActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(this,"wrong login data",Toast.LENGTH_SHORT).show();
+                etusername.setText("");
+                etpassword.setText("");
+            }
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+
     }
     private void sign_up_attempt(View V){
+        EditText etusername = (EditText) findViewById(R.id.Username);
+        EditText etpassword = (EditText) findViewById(R.id.Password);
+        String username = etusername.getText().toString();
+        String password = etpassword.getText().toString();
+        if(username.equals("") || password.equals("")){
+            Toast.makeText(this, "Please fill in both fields", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(SignInActivity.this, SignUpActivity.class);
+            i.putExtra("username", username);
+            i.putExtra("password", password);
+            startActivity(i);
+
+        }
 
     }
 
-    static private void send (String username, String password)throws JSONException {
+    static private boolean send (String username, String password)throws JSONException {
         JSONObject obj = new JSONObject();
         try {
             obj.put("username", username);
             obj.put("password",password);
-            curl(obj);
+
+            JSONObject response = curl(obj);
+            String id = "id";
+            int userid = response.getInt(id);
+            if (userid != 0) {
+                return true;
+            }
 
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-
     }
 
     static JSONObject curl(JSONObject obj) throws IOException, JSONException {
