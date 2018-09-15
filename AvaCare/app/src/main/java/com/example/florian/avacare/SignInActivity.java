@@ -30,7 +30,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
     }
 
-    private void sign_in_attempt(View V){
+    public void sign_in_attempt(View V){
         EditText etusername = (EditText) findViewById(R.id.Username);
         EditText etpassword = (EditText) findViewById(R.id.Password);
         String username = etusername.getText().toString();
@@ -53,7 +53,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
     }
-    private void sign_up_attempt(View V){
+    public void sign_up_attempt(View V){
         EditText etusername = (EditText) findViewById(R.id.Username);
         EditText etpassword = (EditText) findViewById(R.id.Password);
         String username = etusername.getText().toString();
@@ -77,7 +77,7 @@ public class SignInActivity extends AppCompatActivity {
             obj.put("password",password);
 
             JSONObject response = curl(obj);
-            String id = "id";
+            String id = "user_id";
             int userid = response.getInt(id);
             if (userid != 0) {
                 return true;
@@ -90,6 +90,7 @@ public class SignInActivity extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 
     static JSONObject curl(JSONObject obj) throws IOException, JSONException {
@@ -120,5 +121,6 @@ public class SignInActivity extends AppCompatActivity {
 
         return jsonObject;
     }
+
 }
 
