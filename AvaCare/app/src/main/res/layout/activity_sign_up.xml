@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,6 +10,9 @@
         android:id="@+id/Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -20,6 +23,9 @@
         android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -30,6 +36,9 @@
         android:id="@+id/Password2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="208dp"
         android:ems="10"
         android:hint="repeat Password"
         android:inputType="textPassword"
@@ -39,8 +48,11 @@
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/Type"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="164dp"
         android:checkedButton="@+id/Patient"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="107dp"
@@ -66,9 +78,13 @@
         android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="92dp"
         android:onClick="sign_up_attempt"
         android:text="Sign Up"
         tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="334dp" />/>
+        tools:layout_editor_absoluteY="334dp" />
 
-</android.support.constraint.ConstraintLayout>
+</android.widget.RelativeLayout>

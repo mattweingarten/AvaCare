@@ -9,5 +9,6 @@ public class receive_treatment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_treatment);
+
     }
 }
