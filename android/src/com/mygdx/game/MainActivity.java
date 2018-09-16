@@ -130,12 +130,13 @@ public class MainActivity extends AppCompatActivity
         Intent i = null;
         int item_id = item.getItemId();
 
+        Log.d("##idMAIN", ""+id);
         if (item_id == R.id.nav_accidnet) {
-            i = new Intent(MainActivity.this, DocMainActivity.class);
+            i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
             i.putExtra("ko_type", 1);    //code for accident
             i.putExtra("id", id);
         } else if (item_id == R.id.nav_sickness) {
-            i = new Intent(MainActivity.this, DocMainActivity.class);
+            i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
             i.putExtra("ko_type", 2);    //code for sickness
             i.putExtra("id", id);
         } else if (item_id == R.id.nav_history) {

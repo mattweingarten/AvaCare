@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import android.os.AsyncTask;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -99,7 +101,11 @@ class NetworkAsyncTask extends AsyncTask<URL, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        parentClass.handleMessageResponse(this.response);
+        try {
+            parentClass.handleMessageResponse(this.response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 
