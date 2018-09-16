@@ -103,6 +103,7 @@ public class SignUpActivity extends Messagecallbackhandler {
                 } else {
                     i = new Intent(SignUpActivity.this, MainActivity.class);
                     i.putExtra("id", id);
+                    i.putExtra("first",true);
                     startActivity(i);
                 }
             } else {
