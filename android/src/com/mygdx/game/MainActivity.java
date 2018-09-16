@@ -47,7 +47,6 @@ public class MainActivity extends Messagecallbackhandler
         Log.d("##id", "" + id);
         ko_type = i.getIntExtra("ko_type", 0);
 
-        //TODO set background as avatar
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -96,18 +95,6 @@ public class MainActivity extends Messagecallbackhandler
 
     public void floatingActionButton(){
 
-        boolean accident = false;
-        if (ko_type == 1){
-            accident = true;
-        }
-        fever = 37;
-        StringBuilder sb = new StringBuilder();
-        sb.append("&accident=");
-        sb.append(accident);
-        sb.append("&fever=");
-        sb.append(fever);
-        new NetworkAsyncTask(sb.toString(), this, URL + "users/"+id+ "/conditions").execute();
-
         Intent i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
         i.putExtra("id", id);
         i.putExtra("first",false);
@@ -143,16 +130,38 @@ public class MainActivity extends Messagecallbackhandler
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Log.d("##idMAIN", ""+id);
         if (item_id == R.id.nav_accidnet) {
-            drawer.closeDrawer(Gravity.LEFT);
             ko_type = 1;
+            boolean accident = false;
+            if (ko_type == 1){
+                accident = true;
+            }
+            fever = 37;
+            StringBuilder sb = new StringBuilder();
+            sb.append("&accident=");
+            sb.append(accident);
+            sb.append("&fever=");
+            sb.append(fever);
+            new NetworkAsyncTask(sb.toString(), this, URL + "users/"+id+ "/conditions").execute();
+            drawer.closeDrawer(Gravity.LEFT);
             i = new Intent(MainActivity.this, MainActivity.class);
             i.putExtra("first",false);
         } else if (item_id == R.id.nav_sickness) {
+            ko_type = 2;
+            boolean accident = false;
+            if (ko_type == 1){
+                accident = true;
+            }
+            fever = 37;
+            StringBuilder sb = new StringBuilder();
+            sb.append("&accident=");
+            sb.append(accident);
+            sb.append("&fever=");
+            sb.append(fever);
+            new NetworkAsyncTask(sb.toString(), this, URL + "users/"+id+ "/conditions").execute();
             drawer.closeDrawer(Gravity.LEFT);
             ko_type = 2;
             i = new Intent(MainActivity.this, MainActivity.class);
             i.putExtra("first",false);
-
         } else if (item_id == R.id.nav_history) {
             i = new Intent(MainActivity.this, HistoryActivity.class);
             i.putExtra("id",id);
