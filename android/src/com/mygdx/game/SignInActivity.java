@@ -64,6 +64,7 @@ public class SignInActivity extends Messagecallbackhandler {
                 Toast.makeText(this,"logging in...",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(SignInActivity.this,MainActivity.class);
                 i.putExtra("id",id);
+                i.putExtra("first",true);
                 startActivity(i);
             }
             else{
