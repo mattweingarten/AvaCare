@@ -118,8 +118,6 @@ public class MainActivity extends Messagecallbackhandler
         return true;
     }
 
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -164,13 +162,17 @@ public class MainActivity extends Messagecallbackhandler
             i.putExtra("first",false);
         } else if (item_id == R.id.nav_history) {
             i = new Intent(MainActivity.this, HistoryActivity.class);
+            i.putExtra("first",true);
             i.putExtra("id",id);
         } else if (item_id == R.id.nav_skins) {
             i = new Intent(MainActivity.this, SkinsActivity.class);
+            i.putExtra("first",true);
         } else if (item_id == R.id.nav_settings) {
             i = new Intent(MainActivity.this, SettingsActivity.class);
+            i.putExtra("first",true);
         } else if (item_id == R.id.nav_logOut) {
             i = new Intent(MainActivity.this, SignInActivity.class);
+            i.putExtra("first",true);
             //TODO prevent user from pressing back
         }
         startActivity(i);
