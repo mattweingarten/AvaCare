@@ -4,28 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/AvaGreenLight"
     tools:context=".SignUpActivity">
 
     <EditText
         android:id="@+id/Username"
+        android:backgroundTint="@color/AvaVio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="173dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="28dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/ava_logo" />
+
     <EditText
         android:id="@+id/Password"
+        android:backgroundTint="@color/AvaVio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_centerInParent="true"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -36,9 +50,10 @@
         android:id="@+id/Password2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:backgroundTint="@color/AvaVio"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="208dp"
+        android:layout_marginBottom="174dp"
         android:ems="10"
         android:hint="repeat Password"
         android:inputType="textPassword"
@@ -52,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="126dp"
         android:checkedButton="@+id/Patient"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="107dp"
@@ -60,6 +75,7 @@
 
         <RadioButton
             android:id="@+id/Patient"
+            android:buttonTint="@color/AvaVio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
@@ -67,6 +83,7 @@
 
         <RadioButton
             android:id="@+id/Doctor"
+            android:buttonTint="@color/AvaVio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -78,10 +95,10 @@
         android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:background="@drawable/buttonsing"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="60dp"
         android:onClick="sign_up_attempt"
         android:text="Sign Up"
         tools:layout_editor_absoluteX="148dp"
