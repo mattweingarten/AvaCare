@@ -14,7 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SignUpActivity extends Messagecallbackhandler {
-
+    private final String URL = MainActivity.URL;
     EditText etusername;
     EditText etpassword;
     EditText etpassword2;
@@ -79,7 +79,7 @@ public class SignUpActivity extends Messagecallbackhandler {
             sb.append(username);
             sb.append("&secret=");
             sb.append(password);
-            new NetworkAsyncTask(sb.toString(), this, "https://97e89c8b.ngrok.io/users").execute();
+            new NetworkAsyncTask(sb.toString(), this, URL + "/users").execute();
         }
     }
 

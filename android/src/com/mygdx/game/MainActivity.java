@@ -19,6 +19,8 @@ import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks{
 
+    public static final String URL="https://c3151d22.ngrok.io";
+
     String Username;
     @Override
     public void exit(){
