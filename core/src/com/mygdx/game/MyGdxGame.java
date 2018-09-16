@@ -73,7 +73,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 	    modelBatch = new ModelBatch();
 		cam = new PerspectiveCamera(90, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		cam.position.set(100f, 150f, 50f);
+		cam.position.set(50f, 20f, 50f);
 		cam.lookAt(0, 0, 50);
 		cam.near = 0.1f;
 		cam.far	= 300f;
@@ -88,7 +88,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		instance = new ModelInstance(model);
 
 		//instance.transform.rotate(1,0,0,0);
-		instance.transform.rotate(0,1,0,135);
+		instance.transform.rotate(0,1,0,90);
+		instance.transform.rotate(1,0,0, 315);
 		//instance.transform.rotate(0,1,0,270);
 
 		//assets = new AssetManager();
