@@ -15,15 +15,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks, CallbackListener{
+import org.json.JSONException;
+
+public class MainActivity extends Messagecallbackhandler
+        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks{
+
 
     public static final String URL="https://c3151d22.ngrok.io";
 
+    boolean first;
     int id;
     int ko_type;
+    double fever;
+
     @Override
     public void exit(){
 
@@ -35,12 +42,11 @@ public class MainActivity extends AppCompatActivity
         setTitle("AvaCare - new health issue");
 
         Intent i = getIntent();
-        id = i.getIntExtra("id",0);
+        id = i.getIntExtra("id", 0);
+        first = i.getBooleanExtra("first",false);
+        Log.d("##id", "" + id);
+        ko_type = i.getIntExtra("ko_type", 0);
 
-        Log.d("##id",""+id);
-        ko_type = i.getIntExtra("ko_type",0);
-
-        //TODO set background as avatar
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -51,20 +57,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO send medical data to backend, receive treatment
-
-                //TODO send via json to backend
-                //--> send fever (true, false) and accident (true, false)
-
-
-                //TODO get location
-
-                //TODO get fever, get comment
-                //receive answer
-                String advice = "do this";
-                Intent i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
-                i.putExtra("advice", advice);
-                startActivity(i);
+                floatingActionButton();
             }
         });
 
@@ -78,13 +71,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         // TextView headerTV = (TextView) findViewById(R.id.nav_header_title);
 
-        if(ko_type == 1){
-            //TODO goto accident input
-        }else if(ko_type == 2){
-            //TODO goto illness input
-        }else if(ko_type == 0){
-
-        }
         GameFragment libgdcfragment = new GameFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.contentFramelayout, libgdcfragment).commit();
         /*AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
@@ -101,7 +87,18 @@ public class MainActivity extends AppCompatActivity
         tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         tv.setText("Added tv");
         layout.addView(tv);*/
-        drawer.openDrawer(Gravity.LEFT);
+        if (first) {
+            drawer.openDrawer(Gravity.LEFT);
+        }
+    }
+
+
+    public void floatingActionButton(){
+
+        Intent i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
+        i.putExtra("id", id);
+        i.putExtra("first",false);
+        startActivity(i);
     }
 
     @Override
@@ -130,15 +127,41 @@ public class MainActivity extends AppCompatActivity
         Intent i = null;
         int item_id = item.getItemId();
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Log.d("##idMAIN", ""+id);
         if (item_id == R.id.nav_accidnet) {
-            i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
-            i.putExtra("ko_type", 1);    //code for accident
-            i.putExtra("id", id);
+            ko_type = 1;
+            boolean accident = false;
+            if (ko_type == 1){
+                accident = true;
+            }
+            fever = 37;
+            StringBuilder sb = new StringBuilder();
+            sb.append("&accident=");
+            sb.append(accident);
+            sb.append("&fever=");
+            sb.append(fever);
+            new NetworkAsyncTask(sb.toString(), this, URL + "users/"+id+ "/conditions").execute();
+            drawer.closeDrawer(Gravity.LEFT);
+            i = new Intent(MainActivity.this, MainActivity.class);
+            i.putExtra("first",false);
         } else if (item_id == R.id.nav_sickness) {
-            i = new Intent(MainActivity.this, ReceiveTreatmentActivity.class);
-            i.putExtra("ko_type", 2);    //code for sickness
-            i.putExtra("id", id);
+            ko_type = 2;
+            boolean accident = false;
+            if (ko_type == 1){
+                accident = true;
+            }
+            fever = 37;
+            StringBuilder sb = new StringBuilder();
+            sb.append("&accident=");
+            sb.append(accident);
+            sb.append("&fever=");
+            sb.append(fever);
+            new NetworkAsyncTask(sb.toString(), this, URL + "users/"+id+ "/conditions").execute();
+            drawer.closeDrawer(Gravity.LEFT);
+            ko_type = 2;
+            i = new Intent(MainActivity.this, MainActivity.class);
+            i.putExtra("first",false);
         } else if (item_id == R.id.nav_history) {
             i = new Intent(MainActivity.this, HistoryActivity.class);
             i.putExtra("id",id);
@@ -151,12 +174,14 @@ public class MainActivity extends AppCompatActivity
             //TODO prevent user from pressing back
         }
         startActivity(i);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
+    public void handleMessageResponse(String s) throws JSONException {
+    }
+
     public void sendData(float x, float y, float z) {
 
     }

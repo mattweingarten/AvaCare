@@ -104,6 +104,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		bestInputController = new BestInputController(cam, controllerCallback, instance);
 		bestInputController.pinchZoomFactor = 100f;
 		Gdx.input.setInputProcessor(bestInputController);
+
+		Gdx.gl.glClearColor(0.15f, 0.15f, 0.15f, 1f);
 	}
 
 	/*private void doneLoading() {

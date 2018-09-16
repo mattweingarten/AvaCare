@@ -24,9 +24,4 @@ public class GameFragment extends AndroidFragmentApplication {
         return initializeForView(new MyGdxGame(listener));
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mainListener = (CallbackListener) activity;
-    }
 }
