@@ -171,6 +171,7 @@ public class MainActivity extends Messagecallbackhandler
 
     @Override
     public void handleMessageResponse(String s) throws JSONException {
+    }
 
     public void sendData(float x, float y, float z) {
 
