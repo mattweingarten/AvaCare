@@ -14,10 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks{
 
     String Username;
+    @Override
+    public void exit(){
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //TODO change color of main drawer
@@ -73,7 +79,22 @@ public class MainActivity extends AppCompatActivity
         }else if(ko_type == 0){
 
         }
-
+        GameFragment libgdcfragment = new GameFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.contentFramelayout, libgdcfragment).commit();
+        /*AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        CallbackListener callbackListener = new CallbackListener() {
+            @Override
+            public void sendData(float x, float y, float z) {
+                Log.d("##", "x: " + x + ", y: " + y + ", z: " + z);
+            }
+        };
+        AndroidLauncher aa = new AndroidLauncher();
+        View v = aa.initializeForView(new MyGdxGame(callbackListener), config);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.mainView);
+        TextView tv = new TextView(this);
+        tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        tv.setText("Added tv");
+        layout.addView(tv);*/
         drawer.openDrawer(Gravity.LEFT);
     }
 

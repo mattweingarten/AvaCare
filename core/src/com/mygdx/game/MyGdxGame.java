@@ -2,9 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,10 +15,7 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
-import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.graphics.g3d.utils.TextureProvider;
-import com.badlogic.gdx.graphics.g3d.utils.shapebuilders.SphereShapeBuilder;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -79,7 +73,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 	    modelBatch = new ModelBatch();
 		cam = new PerspectiveCamera(90, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		cam.position.set(50f, 50f, 50f);
+		cam.position.set(100f, 150f, 50f);
 		cam.lookAt(0, 0, 50);
 		cam.near = 0.1f;
 		cam.far	= 300f;
@@ -93,7 +87,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		model = loader.loadModel(Gdx.files.internal("man.obj"));
 		instance = new ModelInstance(model);
 
-		instance.transform.rotate(1,0,0,90);
+		//instance.transform.rotate(1,0,0,0);
 		instance.transform.rotate(0,1,0,135);
 		//instance.transform.rotate(0,1,0,270);
 
