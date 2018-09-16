@@ -52,17 +52,17 @@ public class MyGdxGame extends ApplicationAdapter {
 					newSphereInstance.transform = translation;
 					spheres.add(newSphereInstance);
 
-					ModelBuilder newModelBuilder = new ModelBuilder();
-					Vector3 intersectionPoint = new Vector3(x, y, z);
-					Model debugVector = newModelBuilder.createArrow(cam.position, intersectionPoint, new Material(ColorAttribute.createDiffuse(Color.RED)),
-							VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
-					ModelInstance debug = new ModelInstance(debugVector);
-
-					Matrix4 cameraPos = new Matrix4();
-					translation.setTranslation(cam.position);
-
-					debug.transform = translation;
-					spheres.add(debug);
+//					ModelBuilder newModelBuilder = new ModelBuilder();
+//					Vector3 intersectionPoint = new Vector3(x, y, z);
+//					Model debugVector = newModelBuilder.createArrow(cam.position, intersectionPoint, new Material(ColorAttribute.createDiffuse(Color.RED)),
+//							VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
+//					ModelInstance debug = new ModelInstance(debugVector);
+//
+//					Matrix4 cameraPos = new Matrix4();
+//					translation.setTranslation(cam.position);
+//
+//					debug.transform = translation;
+//					spheres.add(debug);
 					listener.sendData(x, y, z);
 				}
 			}
