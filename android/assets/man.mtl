@@ -1,0 +1,37 @@
+# Material Count: 3
+
+newmtl Man_body
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.990000 0.990000 0.990000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Man_body_dif.jpg
+map_Ka textures/Man_body_dif.jpg
+
+newmtl Man_eyes
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.990000 0.990000 0.990000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Man_eyes_dif.jpg
+map_Ka textures/Man_eyes_dif.jpg
+
+newmtl Man_face
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.990000 0.990000 0.990000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Man_face_dif.jpg
+map_Ka textures/Man_face_dif.jpg
