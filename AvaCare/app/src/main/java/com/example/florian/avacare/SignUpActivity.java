@@ -3,7 +3,9 @@ package com.example.florian.avacare;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,7 +25,7 @@ public class SignUpActivity extends Messagecallbackhandler {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        setupActionBar();
         Intent i = getIntent();
         etusername = (EditText) findViewById(R.id.Username);
         etpassword = (EditText) findViewById(R.id.Password);
@@ -79,7 +81,7 @@ public class SignUpActivity extends Messagecallbackhandler {
             sb.append(username);
             sb.append("&secret=");
             sb.append(password);
-            new NetworkAsyncTask(sb.toString(), this, "http://0f69a7dc.ngrok.io/users").execute();
+            new NetworkAsyncTask(sb.toString(), this, "https://c3151d22.ngrok.io/users").execute();
         }
     }
 
@@ -115,5 +117,25 @@ public class SignUpActivity extends Messagecallbackhandler {
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
+    }
+
+    //TODO change picture to png to not have raster
+    private void setupActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
