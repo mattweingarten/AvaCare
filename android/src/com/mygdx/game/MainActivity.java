@@ -18,7 +18,7 @@ import android.view.View;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks{
+        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks, CallbackListener{
 
     public static final String URL="https://c3151d22.ngrok.io";
 
@@ -154,5 +154,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void sendData(float x, float y, float z) {
+
     }
 }
