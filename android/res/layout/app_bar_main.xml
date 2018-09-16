@@ -35,6 +35,7 @@
             android:max="10"
             android:progress="3"
             android:rotation="270"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
