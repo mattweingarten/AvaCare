@@ -139,7 +139,8 @@ public class BestInputController extends GestureDetector {
 
             Vector3 touchPoint = new Vector3();
 
-            Matrix4 t = instance.transform;
+            Matrix4 t = new Matrix4();
+            t.rotate(1, 0, 0, -30);
             Array<Mesh> meshes = instance.model.meshes;
             for (int i = 0; i < meshes.size; i++) {
                 Mesh thisMesh = meshes.get(i).copy(false);
@@ -148,7 +149,6 @@ public class BestInputController extends GestureDetector {
                 thisMesh.getIndices(indices);
                 float[] vertices = new float[thisMesh.getNumVertices()];
                 thisMesh.getVertices(vertices);
-
                 Vector3 intersectionPoint = new Vector3();
                 fixedIntersectRayTriangles(ray, vertices, indices, 3, intersectionPoint);
 
