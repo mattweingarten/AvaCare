@@ -22,8 +22,7 @@ public class ReceiveTreatmentActivity extends Messagecallbackhandler {
         id = i.getIntExtra("id", 0);
         Log.d("##id", ""+id);
         new NetworkAsyncTask("", this, URL + "/users/"+id+"/doctor").execute();
-        TextView tv = (TextView) findViewById(R.id.textViewTreatment);
-        tv.setText("CAll " + "name " + "phone number");
+
     }
 
     @Override

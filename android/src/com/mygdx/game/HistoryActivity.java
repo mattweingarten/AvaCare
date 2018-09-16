@@ -34,6 +34,11 @@ public class HistoryActivity extends Messagecallbackhandler {
         sb.append("https://c3151d22.ngrok.io/users/");
         sb.append(id);
         sb.append("/history");
+        /*String[] menuitems = {"List item 1", "List item 2", "List item 3"};
+        ListView listView = (ListView) findViewById(R.id.theList);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuitems);
+        listView.setAdapter(listViewAdapter);*/
+
         new NetworkAsyncTask("", this, sb.toString()).execute();
     }
     //TODO change picture to png to not have raster
