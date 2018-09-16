@@ -31,7 +31,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignUpActivity"
             android:parentActivityName=".SignInActivity"/>
-        <activity android:name=".ReceiveTreatmentActivity" />
+        <activity android:name=".ReceiveTreatmentActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
