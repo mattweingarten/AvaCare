@@ -23,6 +23,7 @@ import org.json.JSONException;
 public class MainActivity extends Messagecallbackhandler
         implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks{
 
+
     public static final String URL="https://c3151d22.ngrok.io";
 
     boolean first;
@@ -170,5 +171,8 @@ public class MainActivity extends Messagecallbackhandler
 
     @Override
     public void handleMessageResponse(String s) throws JSONException {
+
+    public void sendData(float x, float y, float z) {
+
     }
 }
