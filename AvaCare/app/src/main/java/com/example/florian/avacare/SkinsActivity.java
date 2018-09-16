@@ -10,8 +10,8 @@ public class SkinsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skins);
         setTitle("AvaCare - Skins");
-
         setupActionBar();
+
         //TODO what to do when on click back
     }
     //TODO change picture to png to not have raster
@@ -20,6 +20,8 @@ public class SkinsActivity extends AppCompatActivity {
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+//            navigateUpFromSameTask();
         }
     }
 }

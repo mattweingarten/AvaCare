@@ -79,7 +79,7 @@ public class SignUpActivity extends Messagecallbackhandler {
             sb.append(username);
             sb.append("&secret=");
             sb.append(password);
-            new NetworkAsyncTask(sb.toString(), this, "https://97e89c8b.ngrok.io/users").execute();
+            new NetworkAsyncTask(sb.toString(), this, "http://0f69a7dc.ngrok.io/users").execute();
         }
     }
 

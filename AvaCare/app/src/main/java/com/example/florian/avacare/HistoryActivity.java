@@ -32,7 +32,7 @@ public class HistoryActivity extends Messagecallbackhandler {
         id = i.getIntExtra("id", 0);
         Log.d("##id",""+id);
         StringBuilder sb = new StringBuilder();
-        sb.append("https://97e89c8b.ngrok.io/users/");
+        sb.append("http://0f69a7dc.ngrok.io/users/");
         sb.append(id);
         sb.append("/history");
         new NetworkAsyncTask("", this, sb.toString()).execute();

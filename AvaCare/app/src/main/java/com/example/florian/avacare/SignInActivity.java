@@ -32,7 +32,7 @@ public class SignInActivity extends Messagecallbackhandler {
         sb.append(username);
         sb.append("&secret=");
         sb.append(password);
-        new NetworkAsyncTask(sb.toString(),this,"https://97e89c8b.ngrok.io/login").execute();
+        new NetworkAsyncTask(sb.toString(),this,"http://0f69a7dc.ngrok.io/login").execute();
     }
 
     public void sign_up_attempt(View V) {
