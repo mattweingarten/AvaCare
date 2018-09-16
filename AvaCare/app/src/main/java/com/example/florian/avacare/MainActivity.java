@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    String Username;
+    int id;
+    int ko_type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //TODO change color of main drawer
@@ -25,8 +27,10 @@ public class MainActivity extends AppCompatActivity
         setTitle("AvaCare - new health issue");
 
         Intent i = getIntent();
-        Username = i.getStringExtra("username");
-        int ko_type = i.getIntExtra("ko_type",0);
+        id = i.getIntExtra("id",0);
+
+        Log.d("##id",""+id);
+        ko_type = i.getIntExtra("ko_type",0);
 
         //TODO set background as avatar
 
@@ -101,23 +105,24 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here
         Intent i = null;
-        int id = item.getItemId();
+        int item_id = item.getItemId();
 
-        if (id == R.id.nav_accidnet) {
+        if (item_id == R.id.nav_accidnet) {
             i = new Intent(MainActivity.this, DocMainActivity.class);
             i.putExtra("ko_type", 1);    //code for accident
-            i.putExtra("username", Username);
-        } else if (id == R.id.nav_sickness) {
+            i.putExtra("id", id);
+        } else if (item_id == R.id.nav_sickness) {
             i = new Intent(MainActivity.this, DocMainActivity.class);
             i.putExtra("ko_type", 2);    //code for sickness
-            i.putExtra("username", Username);
-        } else if (id == R.id.nav_history) {
+            i.putExtra("id", id);
+        } else if (item_id == R.id.nav_history) {
             i = new Intent(MainActivity.this, HistoryActivity.class);
-        } else if (id == R.id.nav_skins) {
+            i.putExtra("id",id);
+        } else if (item_id == R.id.nav_skins) {
             i = new Intent(MainActivity.this, SkinsActivity.class);
-        } else if (id == R.id.nav_settings) {
+        } else if (item_id == R.id.nav_settings) {
             i = new Intent(MainActivity.this, SettingsActivity.class);
-        } else if (id == R.id.nav_logOut) {
+        } else if (item_id == R.id.nav_logOut) {
             i = new Intent(MainActivity.this, SignInActivity.class);
             //TODO prevent user from pressing back
         }

@@ -60,6 +60,9 @@ public class SignInActivity extends Messagecallbackhandler {
 
             jsn = new JSONObject(s);
             int id = jsn.getInt("id");
+            Log.d("id",""+id);
+
+
             if (id != 0){
                 Toast.makeText(this,"logging in...",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(SignInActivity.this,MainActivity.class);
