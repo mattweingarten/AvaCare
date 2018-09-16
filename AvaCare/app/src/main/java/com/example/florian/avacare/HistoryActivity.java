@@ -2,9 +2,11 @@ package com.example.florian.avacare;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,16 +28,34 @@ public class HistoryActivity extends Messagecallbackhandler {
         setSupportActionBar(toolbar);
         //TODO get history, arrange in scroll view
         setTitle("AvaCare - History");
-
+        setupActionBar();
         //DB
         Intent i = getIntent();
         id = i.getIntExtra("id", 0);
         Log.d("##id",""+id);
         StringBuilder sb = new StringBuilder();
-        sb.append("http://0f69a7dc.ngrok.io/users/");
+        sb.append("https://c3151d22.ngrok.io/users/");
         sb.append(id);
         sb.append("/history");
         new NetworkAsyncTask("", this, sb.toString()).execute();
+    }
+    //TODO change picture to png to not have raster
+    private void setupActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
